@@ -36,6 +36,23 @@ class CounterPage extends StatelessWidget {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
+      //リセットボタンを追加
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: 50.0,
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () => counterProvider.reset(),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

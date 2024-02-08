@@ -9,4 +9,9 @@ class CounterProvider with ChangeNotifier {
     _count++;
     notifyListeners(); //状態が変更されたことをリスナーに通知する
   }
+
+  void reset() {
+    _count = 0;
+    notifyListeners();
+  }
 }
