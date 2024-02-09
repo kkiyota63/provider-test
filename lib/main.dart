@@ -9,10 +9,23 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CounterProvider(),
-      child: MaterialApp(
-        home: CounterPage(),
+    var counterProvider = Provider.of<CounterProvider>(context);
+    var history = counterProvider.history;
+
+    return Scaffold(
+      appBar: AppBar(title: Text('Counter with History')),
+      body: ListView.builder(
+        itemCount: history.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text('Count: ${history[index].count}'),
+            subtitle: Text('Time: ${history[index].timestamp}'),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => counterProvider.increment(),
+        child: Icon(Icons.add),
       ),
     );
   }
